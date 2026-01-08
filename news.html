@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>📰 News Categories</h1>
+
+    <!-- CATEGORY MENU -->
+    <div class="categories">
+        <a href="/news?category=technology">Technology</a>
+        <a href="/news?category=sports">Sports</a>
+        <a href="/news?category=business">Business</a>
+        <a href="/news?category=health">Health</a>
+        <a href="/news?category=entertainment">Entertainment</a>
+    </div>
+
+    <!-- SEARCH -->
+    <form method="POST">
+        <input type="text" name="keyword" placeholder="Search news..." required>
+        <button type="submit">Search</button>
+    </form>
+
+    <a href="/" class="back">⬅ Back to Home</a>
+
+    <!-- NEWS LIST -->
+    <div class="news-list">
+        {% for article in articles %}
+        <div class="news-card">
+            {% if article.urlToImage %}
+                <img src="{{ article.urlToImage }}" alt="News Image">
+            {% endif %}
+            <h3>{{ article.title }}</h3>
+            <p>{{ article.description }}</p>
+            <a href="{{ article.url }}" target="_blank">Read More</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
